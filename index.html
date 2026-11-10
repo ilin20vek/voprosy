@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- Собирается kod/sobrat.py из mastery/reels/anketa-klienta.md, руками не править. -->
+<title>15 вопросов: сценарии роликов из Ваших ответов</title>
+<meta name="description" content="15 вопросов о Вас: из ответов голосом соберу сценарии коротких роликов. Игорь Ильин, «Бизнес по-русски»">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="15 вопросов: ответьте голосом, и я сделаю сценарии Ваших роликов">
+<meta property="og:description" content="15 вопросов о Вас: из ответов голосом соберу сценарии коротких роликов. Игорь Ильин, «Бизнес по-русски»">
+<meta property="og:url" content="https://ilin20vek.github.io/voprosy/">
+<meta property="og:image" content="https://ilin20vek.github.io/voprosy/i/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face{font-family:'Sofia Sans';src:url(fonts/sofia-sans-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Sofia Sans';src:url(fonts/sofia-sans-700.woff2) format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'SSEC';src:url(fonts/sofia-sans-extra-condensed-800.woff2) format('woff2');font-weight:800;font-display:swap}
+/* Цвета - под адресата (свод, п.7): взять с его сайта. Остальное не трогать. */
+:root{--fon:#0f1115;--tekst:#f2efe9;--soft:#b9b4ab;--akcent:#e2b45a;--plashka:#1a1d24}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fon);color:var(--tekst);font:400 19px/1.5 'Sofia Sans',system-ui,sans-serif}
+/* Свод п.17: основной текст не меньше 17 px, подписи не меньше 14 px. Мельче не делать. */
+.in{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:64px 0}
+h1,h2{font-family:SSEC,'Sofia Sans',sans-serif;font-weight:800;line-height:1.02;margin:0 0 20px}
+h1{font-size:64px} h2{font-size:46px}
+.akc{color:var(--akcent)}
+.nom{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:0 0 12px}
+p{margin:0 0 16px;max-width:36em}
+.pod{font-size:15px;color:var(--soft)}
+
+/* Первый экран. Свод п.16: надпись не ложится на лицо ни на одной ширине.
+   Широкий экран: лицо справа, текст слева не шире 46vw. До 900 px: лицо сверху, текст под подбородком. */
+.e0{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.e0 .lico{position:absolute;right:0;bottom:0;height:100%;width:auto;max-width:56vw;object-fit:cover;object-position:top center;
+  -webkit-mask-image:linear-gradient(to left,#000 60%,transparent);mask-image:linear-gradient(to left,#000 60%,transparent)}
+.e0 .in{position:relative;width:100%}
+.e0 .tekst{max-width:min(640px,46vw)}
+.emb{width:60px;height:60px;display:block;margin-bottom:28px}
+.obr{font-size:22px;color:var(--akcent);margin-bottom:10px}
+@media (max-width:900px){
+ .e0{display:block;min-height:0}
+ .e0 .lico{position:absolute;top:0;left:0;right:auto;bottom:auto;width:100%;max-width:none;height:auto;aspect-ratio:1/1;
+   -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 96%);mask-image:linear-gradient(to bottom,#000 55%,transparent 96%)}
+ .e0 .in{padding-top:84vw;padding-bottom:40px}
+ .e0 .tekst{max-width:640px}
+ .emb{position:absolute;top:20px;left:20px;width:52px;height:52px;z-index:2;margin:0}
+}
+@media (max-width:640px){
+ body{font-size:17px}
+ h1{font-size:44px} h2{font-size:34px}
+ section{padding:44px 0}
+ .obr{font-size:19px}
+}
+
+/* Цена. Свод п.21: один раз, конкретно, полная зачёркнута рядом. */
+.cena{background:var(--plashka);border-radius:18px;padding:28px;margin:24px 0}
+.cena .ch{font-family:SSEC,sans-serif;font-weight:800;font-size:56px;line-height:1}
+.cena s{color:var(--soft);font-size:.6em;margin-right:12px}
+
+/* Ролики. Свод п.18: обложка у каждого, нажатие в любое место запускает. Только принятые ролики (п.19). */
+.roliki{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.roliki figure{margin:0}
+.roliki .rol{position:relative;cursor:pointer;border-radius:16px;overflow:hidden}
+.roliki video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
+.roliki .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(0,0,0,.5);pointer-events:none;transition:opacity .2s}
+.roliki .play::after{content:"";position:absolute;left:26px;top:20px;border-style:solid;border-width:12px 0 12px 19px;border-color:transparent transparent transparent #fff}
+.roliki .rol.idet .play{opacity:0}
+.roliki figcaption{font-size:15px;color:var(--soft);margin-top:8px}
+.roliki figcaption b{display:block;color:var(--tekst);font-size:17px}
+
+/* Подпись. Свод п.5: от Игоря, живое фото, настоящая эмблема. */
+.avtor{display:flex;align-items:center;gap:16px;margin-top:28px}
+.avtor img.f{width:84px;height:84px;border-radius:50%;object-fit:cover}
+.avtor img.e{width:44px;height:44px}
+.avtor b{display:block;font-size:19px}
+.avtor span{font-size:15px;color:var(--soft)}
+
+/* Анкета: вопросы раскрываются по нажатию */
+.ank{margin-top:26px}
+.ank details{background:var(--plashka);border-radius:14px;margin:10px 0;max-width:44em}
+.ank summary{position:relative;cursor:pointer;padding:16px 46px 16px 20px;font-weight:700;font-size:19px;list-style:none}
+.ank summary::-webkit-details-marker{display:none}
+.ank summary::after{content:"+";position:absolute;right:20px;top:14px;color:var(--akcent);font-weight:400;font-size:22px}
+.ank details[open] summary::after{content:"−"}
+.ank summary b{color:var(--akcent);margin-right:8px}
+.ank .av{margin:0;padding:0 20px 10px}
+.ank .ap{margin:0;padding:0 20px 18px;color:var(--soft);font-style:italic}
+.knopka{display:inline-flex;align-items:center;gap:10px;background:var(--akcent);color:var(--fon);font-weight:700;font-size:19px;text-decoration:none;border-radius:999px;padding:14px 26px;margin:8px 0 16px}
+.knopka svg{width:22px;height:22px}
+.kak{background:var(--plashka);border-left:4px solid var(--akcent);border-radius:0 16px 16px 0;padding:22px 26px;margin:24px 0;max-width:40em}
+.kak p:last-child{margin:0}
+a{color:var(--akcent)}
+</style>
+</head>
+<body>
+
+<!-- 0. Первый экран: обращение и главная мысль (та же, что в превью) -->
+<section class="e0">
+ <img class="lico" src="i/lico.webp" alt="любому">
+ <div class="in">
+  <img class="emb" src="i/bpr.png" alt="Бизнес по-русски">
+  <div class="tekst">
+   <div class="obr">Здравствуйте,</div>
+   <h1>Ответьте голосом на 15 вопросов, и я сделаю из ответов сценарии Ваших роликов</h1>
+   <p class="pod">Игорь Ильин, «Бизнес по-русски»</p>
+  </div>
+ </div>
+</section>
+
+<!-- 1. Как отвечать -->
+<section>
+ <div class="in">
+  <p class="nom">Как отвечать</p>
+  <h2>Голосовыми в Telegram, с номером вопроса</h2>
+  <p>Из Ваших ответов мы соберём сценарии коротких роликов, поэтому нам нужны не общие слова, а случаи из жизни: когда это было, где, кто что сказал, чем кончилось, с цифрами. Отвечайте голосовыми в Telegram и в начале называйте номер вопроса. Говорите сколько хочется, сбиваться и повторяться можно, мы всё расшифруем. На всё уйдёт около часа, удобнее в два-три захода по пять вопросов. Первые вопросы самые важные, на них не жалейте времени. Вопрос не подходит - пропустите.</p>
+  <div class="kak"><p>Начните голосовое с номера: «Вопрос третий...». Одно голосовое - один вопрос. Шлите мне, Игорю Ильину, в Telegram.</p></div>
+  <a class="knopka" href="https://t.me/ingvarcrypto" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1.3.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.7.4.9.9.9.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.5-1.5zM8.3 13.4l9.5-6c.4-.3.9-.1.5.3l-7.8 7.1-.3 3.3z" fill="currentColor"/></svg>Ответить в Telegram</a>
+ </div>
+</section>
+
+<!-- 2. Вопросы - из mastery/reels/anketa-klienta.md -->
+<section id="voprosy">
+ <div class="in">
+  <p class="nom">15 вопросов</p>
+  <h2>Нажмите на вопрос, чтобы раскрыть его</h2>
+  <div class="ank"><details><summary><b>1</b>Что у Вас спрашивают чаще всего?</summary><p class="av">Вспомните последние разговоры с клиентами, знакомыми, подписчиками. Какие вопросы звучат снова и снова? Перечислите все, какие вспомните, и на два-три самых частых ответьте так, как отвечаете человеку вживую.</p><p class="ap">Например: «А правда, что отбеливание портит зубы?» Его задают на каждом втором приёме, и ответ всякий раз удивляет.</p></details><details><summary><b>2</b>Во что в Вашем деле все верят, а Вы знаете, что это не так?</summary><p class="av">Что повторяют люди, советчики, интернет? Расскажите случай, когда эта вера кому-то навредила или когда Вы сами в неё верили, пока не убедились в обратном.</p><p class="ap">Например: все думают, что машину выгоднее купить в кредит, а потом считают переплату и хватаются за голову.</p></details><details><summary><b>3</b>Ваш самый большой провал</summary><p class="av">Когда это было, чего Вы ждали и что стояло на кону? Что пошло не так, что Вы чувствовали в тот день и что делали потом: через неделю, через месяц? Как поняли настоящую причину? Если провалов несколько, расскажите два-три.</p><p class="ap">Например: открыл второе кафе в лучшем месте города, через полгода закрыл, а причину понял только через год.</p></details><details><summary><b>4</b>Момент, после которого всё поменялось</summary><p class="av">Был ли случай, разговор, событие, после которого Вы стали жить или работать иначе? Каким Вы были до, что произошло, каким стали после?</p><p class="ap">Например: после выгорания перестала брать клиентов по выходным, и доход вырос.</p></details><details><summary><b>5</b>Ваши правила</summary><p class="av">Какие правила Вы повторяете людям чаще всего? Назовите все, какие вспомните, лучше одной фразой каждое. Про каждое расскажите: откуда оно взялось и когда Вы последний раз применяли его сами. Живёте Вы по нему сами или советуете другим?</p><p class="ap">Например: «Никогда не подписываю договор в тот же день». Взялось оно после одной сделки, на которой я потерял деньги.</p></details><details><summary><b>6</b>Человек, которому Вы помогли</summary><p class="av">Расскажите один-два случая: с чем человек пришёл, что Вы сделали или сказали, что изменилось и через сколько. Имя называть не нужно.</p><p class="ap">Например: пришла с долгом 400 тысяч, через восемь месяцев закрыла его, и главным оказался не заработок, а одна привычка.</p></details><details><summary><b>7</b>Фраза, которую Вам сказали и которую Вы помните до сих пор</summary><p class="av">Кто её сказал: учитель, наставник, родитель, клиент, случайный человек? Когда и при каких обстоятельствах? Где она пригодилась Вам потом, в другом деле?</p><p class="ap">Например: первый начальник сказал «клиент платит за спокойствие, а не за работу». Я понял это только через десять лет.</p></details><details><summary><b>8</b>Как Вы живёте и работаете изнутри</summary><p class="av">Расскажите обычный день или обычную работу по шагам: что Вы делаете первым делом, что всегда, что никогда. Где Вы поступаете не так, как принято, и почему?</p><p class="ap">Например: утром первым делом звоню самому трудному клиенту, а почту читаю только после обеда.</p></details><details><summary><b>9</b>Что стоит не столько, сколько кажется</summary><p class="av">Что в Вашем деле переоценено, а что недооценено? Где люди переплачивают, а где экономят зря? Можно расставить по местам: лучшее, среднее, худшее.</p><p class="ap">Например: дорогой матрас ничего не даёт, если подушка не та, а подушка стоит в десять раз дешевле.</p></details><details><summary><b>10</b>Числа Вашего пути</summary><p class="av">Сколько лет Вы этим занимаетесь, сколько людей, проектов, побед, сколько вложили и потеряли? Какой результат лучший? Называйте числа так, как Вы их помните, и одной фразой расскажите, за каждым числом что стоит.</p><p class="ap">Например: двенадцать лет в ремонте, около трёхсот квартир, и только одна, за которую до сих пор стыдно.</p></details><details><summary><b>11</b>Случай, над которым Вы сейчас смеётесь</summary><p class="av">Что было неловким, нелепым, смешным: Ваша ошибка, странный клиент, абсурдная ситуация? Где и когда это было, кто что сказал?</p><p class="ap">Например: пришёл на важную встречу в разной обуви и заметил только на фотографии.</p></details><details><summary><b>12</b>Первый шаг для того, кто хочет как Вы</summary><p class="av">Человек посмотрел ролик и хочет начать. Что ему сделать сегодня, а что до конца недели? Одно маленькое безопасное дело на 5-15 минут. Когда его делать, как понять, что сделано, и что делать, если пропустил день?</p><p class="ap">Например: сегодня вечером выписать все свои подписки и отменить одну. В пятницу посчитать, сколько сэкономили.</p></details><details><summary><b>13</b>Что Вы продаёте и кому это не подходит</summary><p class="av">Что человек может у Вас купить, с какой бедой он к этому приходит и что получает? Что у Вас спрашивают перед покупкой, что останавливает? Кому Вы честно говорите «Вам это не нужно»?</p><p class="ap">Например: консультация на час. Больше всего боятся, что я начну продавать курс, а я его не продаю.</p></details><details><summary><b>14</b>Фото, видео, документы, вещи</summary><p class="av">Что сохранилось из историй, которые Вы рассказали: фото, видео, грамоты, письма, первые чеки, старые вещи? Пришлите в Telegram и одной фразой напишите, к какому вопросу это относится. Если что-то можно снять сейчас, предмет на столе или место, назовите его.</p><p class="ap">Например: фото первого магазина 2009 года, первая заработанная купюра в рамке.</p></details><details><summary><b>15</b>Что можно называть, а что нет</summary><p class="av">Кого из названных людей можно называть по имени, а кого только «знакомый» или «тренер»? Можно ли называть город, компанию, вид спорта или деятельности, суммы? О каких историях и темах Вы не хотите говорить в роликах совсем?</p><p class="ap">Например: учителя по имени можно, компанию бывшего партнёра нельзя, о разводе не рассказываю.</p></details></div>
+ </div>
+</section>
+
+<!-- 3. Концовка и подпись -->
+<section>
+ <div class="in">
+  <h2>Спасибо! Если после ответов вспомнится ещё история, присылайте в любой момент с номером вопроса.</h2>
+  <a class="knopka" href="https://t.me/ingvarcrypto" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1.3.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.7.4.9.9.9.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.5-1.5zM8.3 13.4l9.5-6c.4-.3.9-.1.5.3l-7.8 7.1-.3 3.3z" fill="currentColor"/></svg>Ответить в Telegram</a>
+  <div class="avtor">
+   <img class="f" src="i/igor.webp" alt="Игорь Ильин">
+   <div><b>Игорь Ильин</b><span>«Бизнес по-русски» · Telegram <a href="https://t.me/ingvarcrypto">@ingvarcrypto</a></span></div>
+   <img class="e" src="i/bpr.png" alt="">
+  </div>
+ </div>
+</section>
+
+
+<script>
+document.querySelectorAll('.roliki .rol').forEach(function(r){
+  var v=r.querySelector('video');
+  r.addEventListener('click',function(){
+    if(v.paused){
+      document.querySelectorAll('.roliki video').forEach(function(o){ if(o!==v && !o.paused) o.pause(); });
+      v.play();
+    } else v.pause();
+  });
+  v.addEventListener('play',function(){ r.classList.add('idet'); });
+  v.addEventListener('pause',function(){ r.classList.remove('idet'); });
+  v.addEventListener('ended',function(){ r.classList.remove('idet'); v.load(); });
+});
+</script>
+</body>
+</html>
